@@ -7,12 +7,19 @@
 		"dev": "wrangler dev",
 		"start": "wrangler dev",
 		"test": "vitest",
-		"cf-typegen": "wrangler types"
+		"cf-typegen": "wrangler types",
+		"generate": "protoc -I ./alphagenome/src --experimental_allow_proto3_optional --es_out=src/protos --es_opt=target=ts --connect-es_out=src/protos --connect-es_opt=target=ts alphagenome/src/alphagenome/protos/dna_model.proto alphagenome/src/alphagenome/protos/dna_model_service.proto alphagenome/src/alphagenome/protos/tensor.proto"
 	},
 	"devDependencies": {
+		"@bufbuild/protoc-gen-connect-es": "^0.13.0",
+		"@bufbuild/protoc-gen-es": "^2.6.0",
 		"@cloudflare/vitest-pool-workers": "^0.8.19",
 		"typescript": "^5.5.2",
 		"vitest": "~3.2.0",
 		"wrangler": "^4.23.0"
+	},
+	"dependencies": {
+		"@connectrpc/connect": "^2.0.2",
+		"@connectrpc/connect-web": "^2.0.2"
 	}
 }
