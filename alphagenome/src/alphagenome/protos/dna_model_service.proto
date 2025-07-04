@@ -1,0 +1,54 @@
+// Copyright 2024 Google LLC.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package google.gdm.gdmscience.alphagenome.v1main;
+
+import "alphagenome/protos/dna_model.proto";
+
+option go_package = "google.golang.org/genproto/googleapis/gdm/gdmscience/alphagenome/v1main;alphagenome";
+option java_multiple_files = true;
+option java_outer_classname = "DnaModelServiceProto";
+option java_package = "com.google.gdm.gdmscience.alphagenome.v1main";
+
+// Service for making predictions with DNA models.
+service DnaModelService {
+  // Makes a prediction for DNA sequence.
+  rpc PredictSequence(stream PredictSequenceRequest)
+      returns (stream PredictSequenceResponse) {}
+
+  // Make prediction for a single genomic interval.
+  rpc PredictInterval(stream PredictIntervalRequest)
+      returns (stream PredictIntervalResponse) {}
+
+  // Make variant effect predictions for a genomic interval.
+  rpc PredictVariant(stream PredictVariantRequest)
+      returns (stream PredictVariantResponse) {}
+
+  // Score a genomic interval.
+  rpc ScoreInterval(stream ScoreIntervalRequest)
+      returns (stream ScoreIntervalResponse) {}
+
+  // Score a variant for a genomic interval.
+  rpc ScoreVariant(stream ScoreVariantRequest)
+      returns (stream ScoreVariantResponse) {}
+
+  // Score ISM variant effect predictions for a genomic interval.
+  rpc ScoreIsmVariant(stream ScoreIsmVariantRequest)
+      returns (stream ScoreIsmVariantResponse) {}
+
+  // Get metadata for the model.
+  rpc GetMetadata(MetadataRequest) returns (stream MetadataResponse) {}
+}
